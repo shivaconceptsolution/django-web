@@ -1,0 +1,189 @@
+{%  extends 'companyapp/layout.html' %}
+{% block middlesection %}
+  <!-- contact section -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  <style type="text/css">
+    .rating-box {
+  position: relative;
+  background: #fff;
+  padding: 25px 50px 35px;
+  border-radius: 25px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+.rating-box header {
+  font-size: 22px;
+  color: #dadada;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.rating-box .stars {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.stars i {
+  color: #e6e6e6;
+  font-size: 35px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.stars i.active {
+  color: #ff9c1a;
+}
+
+  </style>
+  
+  <section class="contact_section layout_padding-bottom layout_padding2-top">
+    <div class="container px-0">
+      <div class="heading_container">
+        <h2 class="">
+          {{key}} 
+        </h2>
+      </div>
+
+    </div>
+    <div class="container container-bg">
+      <div class="row">
+       
+        <div class="col-md-12 col-lg-12 px-0">
+         
+         <h1>Welcome in user dashboard</h1>
+         <H3><a href="viewfeed">view Feedback</a></H3>
+         {{res}}
+         <form action="" method="post">
+           {% csrf_token %}
+           <select name="feedto">
+            <option value="">Select Teacher</option>
+          {% for t in tdata %}
+          
+            
+             <option value="{{t.name}}">{{t.name}}</option>
+         
+           {% endfor %}
+          </select>
+           <br><br>
+          
+           <textarea rows="10" cols="90" name="feeddesc">Type Feed Description
+
+           </textarea>
+           <br><br>
+          <div class="rating-box">
+            <header>How was your experience?</header>
+            <div class="stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+          </div>
+           <br><br>
+           <input type="hidden" name="rate" id="rate" />
+           <input type="submit" name="btnsubmit" value="Submit Feedback" />
+       
+           <script>
+            const stars = document.querySelectorAll(".stars i");
+           var count=0;
+        // Loop through the "stars" NodeList
+        stars.forEach((star, index1) => {
+        // Add an event listener that runs a function when the "click" event is triggered
+        star.addEventListener("click", () => {
+          // Loop through the "stars" NodeList Again
+          count++;
+         // alert(index1);
+          stars.forEach((star, index2) => {
+            // Add the "active" class to the clicked star and any stars with a lower index
+            // and remove the "active" class from any stars with a higher index
+            index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
+           
+          });
+         
+        // alert(count);
+          document.getElementById("rate").value=count;
+        });
+        });
+        
+           
+            </script>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end contact section -->
+
+  <!-- client section -->
+
+  
+
+  <section class="info_section  layout_padding2-top">
+    <div class="social_container">
+      <div class="social_box">
+        <a href="">
+          <img src="/static/images/fb.png" alt="">
+        </a>
+        <a href="">
+          <img src="/static/images/twitter.png" alt="">
+        </a>
+        <a href="">
+          <img src="/static/images/linkedin.png" alt="">
+        </a>
+        <a href="">
+          <img src="/static/images/youtube.png" alt="">
+        </a>
+      </div>
+    </div>
+    <div class="info_container ">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3">
+            <h6>
+              ABOUT US
+            </h6>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet,
+            </p>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h6>
+              Instagram
+            </h6>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipi
+              scing elit, sed doLorem ipsum dolor sit
+            </p>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h6>
+              NEED HELP
+            </h6>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet,
+            </p>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h6>
+              CONTACT US
+            </h6>
+            <div class="info_link-box">
+              <a href="">
+                <img src="/static/images/location.png" alt="">
+                <span> Gb road 123 london Uk </span>
+              </a>
+              <a href="">
+                <img src="/static/images/call.png" alt="">
+                <span>+01 12345678901</span>
+              </a>
+              <a href="">
+                <img src="/static/images/mail.png" alt="">
+                <span> demo@gmail.com</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    {% endblock %}
